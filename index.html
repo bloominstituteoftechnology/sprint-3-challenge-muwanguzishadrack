@@ -222,18 +222,13 @@
           if (this.ants.length === 0) {
             return "No ants here. Did you work them to death?";
           }
-          this.ants = this.ants
-            .map((ant) => {
-              if (ant.health > 20) {
-                ant.health -= 20;
-              } else {
-                ant.health = 0;
-              }
-              return ant;
-            })
-            .filter((ant) => ant.health > 0);
-          return `${this.ants.length} ants starting work!`;
+          const numAnts = this.ants.length;
+          this.ants.forEach((ant) => (ant.health -= 20));
+          this.ants = this.ants.filter((ant) => ant.health > 0);
+          return `${numAnts} ants starting work!`;
         }
+
+        //solved
 
         feed(name) {
           let found = false;
